@@ -23,14 +23,18 @@
     class ControladorResidenciales{
         static public function ctrCrearResidencial(){
             
+            //solucion en el modulo de lotes, aqui ya empece
+            $ahora = DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
+            $variableParaPDF = $ahora->format("su");
+
             $consulta=ModeloResidenciales::mdlBuscarResidencial($_POST['resNombre']);
             if ($consulta["existe"]==0) {
 
                 $numerosresidenciales=ModeloResidenciales::mdlconteoResidenciales();
                 $IDresidencial=$numerosresidenciales['numerores']+1;
 
-                $oldplanourl="../views/files/Plano".$IDresidencial.".pdf";
-                $oldlotesinfourl="../views/files/InfoLotes".$IDresidencial.".pdf";
+                $oldplanourl="../views/files/Plano".$variableParaPDF.".pdf";
+                $oldlotesinfourl="../views/files/InfoLotes".$variableParaPDF.".pdf";
                 // echo $pathPDF;
                 copy($_FILES['pdfresidencial']['tmp_name'],$oldplanourl);
                 copy($_FILES['pdflotesinfo']['tmp_name'],$oldlotesinfourl);

@@ -34,11 +34,15 @@ switch ($identificador){
 class ControladorLote{
 
     function ctrguardarlote(){
+
+        $ahora = DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
+        $variableParaPDF = $ahora->format("su");
+
         //esta funcion trae un valor para renombrar
         $numeroLotes=ModeloLotes::ConteoLotes();
         $IDlote=$numeroLotes['lotesExistentes']+1;
         // $pathPDF=$_SERVER['DOCUMENT_ROOT']."/Proyecto_bienes_raices/admin/views/files/Lote".$IDlote.".pdf";
-        $oldpathPDF="../views/files/Lote".$IDlote.".pdf";
+        $oldpathPDF="../views/files/Lote".$variableParaPDF.".pdf";
         // echo $pathPDF;
         copy($_FILES['pdffile']['tmp_name'],$oldpathPDF);
         $pathPDF="../admin".$oldpathPDF;
@@ -141,6 +145,8 @@ class ControladorLote{
     }
 
     static public function ctreditarlote(){
+        $ahora = DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
+        $variableParaPDF = $ahora->format("su");
         $rutanueva='';
         if($_FILES['editpdffile']['name'] == ""){
 
@@ -148,10 +154,11 @@ class ControladorLote{
             
             }else{
 
-                // $rutacorregida=substr("../".$_POST['oldpdf'],8);
+                $rutacorregida="..".substr($_POST['oldpdf'],8);
+                // echo $rutacorregida;
                 // // $pathPDF=$_SERVER['DOCUMENT_ROOT']."/Proyecto_bienes_raices/admin/views/files/Lote".$IDlote.".pdf";
-                $oldpathPDF="../views/files/Lote".$_POST['idlote'].".pdf";
-                unlink($oldpathPDF);
+                unlink($rutacorregida);
+                $oldpathPDF="../views/files/Lote".$variableParaPDF.".pdf";
                 // // echo $pathPDF;
                 copy($_FILES['editpdffile']['tmp_name'],$oldpathPDF);
                 $rutanueva="../admin".substr($oldpathPDF,2);
