@@ -66,10 +66,48 @@
         }
 
         static public function editarResidenciales(){
+
+            $rutanueva1='';
+            $rutanueva2='';
+            if($_FILES['pdfresidencialedit']['name'] == ""){
+
+                $rutanueva1=$_POST['linkresidencialplano'];
+            
+            }else{
+                // // $pathPDF=$_SERVER['DOCUMENT_ROOT']."/Proyecto_bienes_raices/admin/views/files/Lote".$IDlote.".pdf";
+                $oldpathPDF1="../views/files/Plano".$_POST['idresidencial'].".pdf";
+                // // echo $pathPDF;
+                copy($_FILES['pdfresidencialedit']['tmp_name'],$oldpathPDF1);
+                $rutanueva1="../admin".substr($oldpathPDF1,2);
+            }
+
+
+
+            if($_FILES['pdflotesinfoedit']['name'] == ""){
+
+                $rutanueva2=$_POST['listaloteslink'];
+            
+            }else{
+
+                // // $pathPDF=$_SERVER['DOCUMENT_ROOT']."/Proyecto_bienes_raices/admin/views/files/Lote".$IDlote.".pdf";
+                $oldpathPDF2="../views/files/InfoLotes".$_POST['idresidencial'].".pdf";
+                unlink($oldpathPDF2);
+                // // echo $pathPDF;
+                copy($_FILES['pdflotesinfoedit']['tmp_name'],$oldpathPDF2);
+                $rutanueva2="../admin".substr($oldpathPDF2,2);
+            }
+            
+            // echo $_FILES['pdflotesinfoedit']['name'];
+
+
             $datosActualizados=array(
                 "IDresidencial"=>$_POST['idresidencial'],
                 "AcNombre"=>$_POST['editarnombreResidencial'],
                 "ActDireccion"=>$_POST['editardireccionresidencial'],
+                "ActCatastro"=>$_POST['catastroresedit'],
+                "ActLink"=>$_POST['linkvideoresedit'],
+                "ActPlano"=>$rutanueva1,
+                "ActLoteslistas"=>$rutanueva2,
             );
 
             $actualizadoR=ModeloResidenciales::mdlEditarResidencial($datosActualizados);

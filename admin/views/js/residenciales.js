@@ -171,7 +171,16 @@ function loadresidenciales(){
         $("#idresidencial").val(nuevosdatosre['IDresidenciales']);
         $("#editarnombreResidencial").val(nuevosdatosre['nombre_res']);
         $("#editardireccionresidencial").val(nuevosdatosre['ubicacion']);
+        $("#catastroresedit").val(nuevosdatosre['info_catastro']);
+        $("#linkvideoresedit").val(nuevosdatosre['link_video_res']);
+        $("#linkresidencialplano").val(nuevosdatosre['plano_pdf']);
+        $("#listaloteslink").val(nuevosdatosre['info_lotes_pdf']);
     });
+
+
+    $("#catastroresedit,#linkvideoresedit").focus(function(){	   
+        this.select();
+      })
 
 
     $('#editarresidencial').submit(function (e){
@@ -267,3 +276,5 @@ $('#residenciales tbody').on("click","button.btneliminarresidenciales",function(
         }
     });
 });
+
+

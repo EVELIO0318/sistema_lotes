@@ -402,7 +402,8 @@ $("#editarlote").submit(function (e) {
                     icon: 'success',
                     title: 'Residencial Actualizada con éxito',
                 });
-                loadlotes();
+                $('#lotes').DataTable().ajax.reload();
+                $("#editpdffile").val(''); 
             }else{
                 Swal.fire({
                 icon: 'error',

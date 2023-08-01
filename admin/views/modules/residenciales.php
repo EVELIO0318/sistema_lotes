@@ -190,6 +190,44 @@
             <textarea type="text" placeholder="Ingresar Dirección" class="form-control" name="editardireccionresidencial" id="editardireccionresidencial" cols="30" rows="5" required></textarea>
             </div>
         </div>
+
+
+            <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-link"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Ingrese el Link de la Ficha Catastral" aria-label="Username" aria-describedby="basic-addon1" name="catastroresedit" id="catastroresedit" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1"><i class="fab fa-youtube"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Ingrese el Link del video en Youtube" aria-label="Username" aria-describedby="basic-addon1" name="linkvideoresedit" id="linkvideoresedit" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="panel">
+                    SUBIR PLANO DE RESIDENCIAL
+                </div>
+                <br>
+                <input type="file" name="pdfresidencialedit" id="pdfresidenciaedit" class="pdfresidencialedit" accept="application/pdf">
+            </div>
+
+            <div class="form-group">
+                <div class="panel">
+                    SUBIR ARCHIVO DE LOS LOTES
+                </div>
+                <br>
+                <input type="file" name="pdflotesinfoedit" id="pdflotesinfoedit" class="pdflotesinfoedit" accept="application/pdf">
+            </div>
+            <input type="hidden" name="linkresidencialplano" id="linkresidencialplano">
+            <input type="hidden" name="listaloteslink" id="listaloteslink">
+
         </div>
     </div>
     <div class="modal-footer">

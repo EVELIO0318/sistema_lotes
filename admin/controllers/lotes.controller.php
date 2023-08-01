@@ -148,13 +148,13 @@ class ControladorLote{
             
             }else{
 
-                $rutacorregida="..".substr($_POST['oldpdf'],8);
-                unlink($rutacorregida);
+                // $rutacorregida=substr("../".$_POST['oldpdf'],8);
                 // // $pathPDF=$_SERVER['DOCUMENT_ROOT']."/Proyecto_bienes_raices/admin/views/files/Lote".$IDlote.".pdf";
                 $oldpathPDF="../views/files/Lote".$_POST['idlote'].".pdf";
+                unlink($oldpathPDF);
                 // // echo $pathPDF;
                 copy($_FILES['editpdffile']['tmp_name'],$oldpathPDF);
-                $rutanueva="../admin".$oldpathPDF;
+                $rutanueva="../admin".substr($oldpathPDF,2);
             
             }
 

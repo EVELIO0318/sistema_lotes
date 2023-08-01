@@ -38,10 +38,14 @@ class ModeloResidenciales{
 
     static public function mdlEditarResidencial($datosResidencial){
         try{
-            $actualizarR=Conexion::conectar()->prepare("UPDATE residenciales SET nombre_res=:nombreA, ubicacion=:ubicacionA WHERE IDresidenciales=:ID");
+            $actualizarR=Conexion::conectar()->prepare("UPDATE residenciales SET nombre_res=:nombreA, ubicacion=:ubicacionA, link_video_res=:videoedit, plano_pdf=:planoedit, info_lotes_pdf=:listalotesedit, info_catastro=:infocatastro WHERE IDresidenciales=:ID");
             $actualizarR->bindParam(":nombreA",$datosResidencial['AcNombre'],PDO::PARAM_STR);
             $actualizarR->bindParam(":ubicacionA",$datosResidencial['ActDireccion'],PDO::PARAM_STR);
             $actualizarR->bindParam(":ID",$datosResidencial['IDresidencial'],PDO::PARAM_STR);
+            $actualizarR->bindParam(":videoedit",$datosResidencial['ActLink'],PDO::PARAM_STR);
+            $actualizarR->bindParam(":planoedit",$datosResidencial['ActPlano'],PDO::PARAM_STR);
+            $actualizarR->bindParam(":listalotesedit",$datosResidencial['ActLoteslistas'],PDO::PARAM_STR);
+            $actualizarR->bindParam(":infocatastro",$datosResidencial['ActCatastro'],PDO::PARAM_STR);
             return $actualizarR->execute();
         }catch(Exception $n){
             return $n->getMessage();
