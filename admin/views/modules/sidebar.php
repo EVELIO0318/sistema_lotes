@@ -14,7 +14,7 @@
           <img src="views/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" id="userimage">
         </div> -->
         <div class="info">
-          <a href="inicio" class="d-block" id="usuarionombre" style="font-size: 16px;">Alexander Pierce</a>
+          <a href="inicio" class="d-block" id="usuarionombre" style="font-size: 16px;"></a>
         </div>
       </div>
 

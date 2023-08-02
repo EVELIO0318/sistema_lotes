@@ -17,6 +17,15 @@
         case 'eliminarresidencial':
             $residencial->eliminarResidenciales();
         break;
+        case 'guardarimgres':
+            $residencial->guardarimgs();
+        break;
+        case 'cargarimgres':
+            $residencial->cargarimgs();
+        break;
+        case 'eliminarimgres':
+            $residencial->ctrEliminarimgres();
+        break;
     }
 
 
@@ -136,6 +145,68 @@
             }else{
                 echo $eliminado;
             }
+        }
+
+        static public function guardarimgs(){
+            
+      
+        $ruta='';
+        $ahora = DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
+        $variableParaImg = $ahora->format("su");
+
+
+        $IDres=$_POST['IDresidencial'];
+        $url_imagen=$_FILES['file']['tmp_name'];
+        
+        // echo $url_imagen=$_FILES['file']['type'];
+        if ($_FILES['file']['type']=='image/jpg') {
+            $ruta="../views/img/imgresidencial/".$IDres."_img".$variableParaImg.".jpg";
+        }
+        if ($_FILES['file']['type']=='image/png') {
+            $ruta="../views/img/imgresidencial/".$IDres."_img".$variableParaImg.".png";
+
+        }
+         if ($_FILES['file']['type']=='image/jpeg') {
+            $ruta="../views/img/imgresidencial/".$IDres."_img".$variableParaImg.".jpeg";
+
+
+        }
+
+        copy($url_imagen,$ruta);
+
+
+        $nuevaruta="../admin".substr($ruta,2);
+
+        $DatosAGuardarres=array(
+            "IDlresig"=>$IDres,
+            "imagenesurl"=>$nuevaruta,
+        );
+
+
+        $guardarimgs=ModeloResidenciales::GuardarArrayImgres($DatosAGuardarres);
+
+        if ($guardarimgs===TRUE) {
+            echo "ok";
+        }else{
+            echo $guardarimgs;
+        }
+        }
+
+
+        static public function cargarimgs(){
+            $traerimgs=ModeloResidenciales::cargarimgs($_POST['idres']);
+            echo json_encode($traerimgs,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
+
+        static public function ctrEliminarimgres(){
+            $eliminarimg=ModeloResidenciales::mdlEliminarImgres($_POST['idresi']);
+            if ($eliminarimg===TRUE) {
+                $nuevaruta="..".substr($_POST['url'],8);
+                unlink($nuevaruta);
+                echo "ok";
+            }else{
+                echo $eliminarimg;
+            }  
         }
     }
 ?>

@@ -72,5 +72,40 @@ class ModeloResidenciales{
             return $vale->getMessage();
         }
     }
+
+
+    static public function GuardarArrayImgres($resdataimg){
+        try{
+            $imgsave=Conexion::conectar()->prepare("INSERT INTO imagenes_residencial (IDresidencial,url_image_res) VALUES (:idresi,:urlresi)");
+
+            $imgsave->bindParam(":idresi",$resdataimg['IDlresig'],PDO::PARAM_STR);
+            $imgsave->bindParam(":urlresi",$resdataimg['imagenesurl'],PDO::PARAM_STR);
+            return $imgsave->execute();
+        }catch(Exception $elisa){
+            return $elisa->getMessage();
+        }
+    }
+
+
+    static public function cargarimgs($id){
+        try{
+            $imgarray=Conexion::conectar()->prepare("SELECT IDimgresidencial,url_image_res FROM imagenes_residencial WHERE IDresidencial=:id");
+            $imgarray->bindParam(":id",$id,PDO::PARAM_STR);
+            $imgarray->execute();
+            return $imgarray->fetchAll();
+        }catch(Exception $angel){
+            return $angel->getMessage();
+        }
+    }
+
+    static public function mdlEliminarImgres($idresinden){
+        try{
+            $eliminarimg=Conexion::conectar()->prepare("DELETE FROM imagenes_residencial WHERE IDimgresidencial=:id");
+            $eliminarimg->bindParam(":id",$idresinden,PDO::PARAM_STR);
+            return $eliminarimg->execute();
+        }catch (Exception $Angie){
+            return $Angie->getMessage();
+        }
+    }
 }
 ?>

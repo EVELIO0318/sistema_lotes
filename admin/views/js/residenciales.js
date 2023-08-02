@@ -137,7 +137,7 @@ function loadresidenciales(){
         	},
             {"data": null,
                 render: function () {
-                        return ` <button class="btn btn-secondary crudfotos" id="crudfotos" data-toggle="modal" data-target="#crudfotos" name="crudfotos">
+                        return ` <button class="btn btn-secondary crudfotosres" id="crudfotosres" data-toggle="modal" data-target="#crudfotos" name="crudfotosres">
                                     <i class="fas fa-eye"></i>
                                 </button>`;
                 },className: "text-center"
@@ -335,7 +335,7 @@ function cargarDropzone() {
             let idloteimg=$("#idimglote").val();
             for (let i = 0; i < arrayImage.length; i++) {
                 let imgData=new FormData();
-                imgData.append("IDlote",idloteimg);
+                imgData.append("IDresidencial",idloteimg);
                 imgData.append("file",arrayImage[i]);
                 imgData.append("identificador","guardarimgres");
 
@@ -372,3 +372,119 @@ function cargarDropzone() {
  };
 
 
+ $('#residenciales tbody').on("click","button.crudfotosres",function(){
+    var datosparaimg=$(this).parents('tr');
+    if (datosparaimg.hasClass('child')) {
+        datosparaimg=datosparaimg.prev();
+    }
+    
+    var imgdata=$('#residenciales').DataTable().row(datosparaimg).data();
+    console.log(imgdata['IDresidenciales']);
+    cargarimagenesatabla(imgdata['IDresidenciales']);
+});
+
+
+
+
+ function cargarimagenesatabla(id){
+    $('#imglotes').DataTable( {
+		responsive: true,
+		"language": {
+			"sProcessing":     "Procesando...",
+			"sLengthMenu":     "Mostrar _MENU_ imagenes",
+			"sZeroRecords":    "No se encontraron imagenes",
+			"sEmptyTable":     "No existe ninguna imagen guardada para este lote",
+			"sInfo":           "Mostrando imagenes del _START_ al _END_ de un total de _TOTAL_",
+			"sInfoEmpty":      "Mostrando imagenes del 0 al 0 de un total de 0",
+			"sInfoFiltered":   "(filtrado de un total de _MAX_ imagenes)",
+			"sInfoPostFix":    "",
+			"sSearch":         "Buscar:",
+			"sUrl":            "",
+			"sInfoThousands":  ",",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+			"sFirst":    "Primero",
+			"sLast":     "Último",
+			"sNext":     "Siguiente",
+			"sPrevious": "Anterior"
+			},
+			"oAria": {
+				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			}
+
+		},
+        destroy: true,
+        "ajax": {
+            "method": "POST",
+            "url" : "controllers/residenciales.controller.php",
+            "data": {identificador:"cargarimgres",idres:id},
+            "dataSrc":'',
+        },
+        "columns":[
+        	{"data":"IDimgresidencial",className: "text-center"},
+        	{"data":"url_image_res",
+        		render: function (data,type,row) {
+        				return ` <div class="text-center">
+                                    <img src="${data}" class="img-thumbnail img-fluid" alt="img">
+                                    </div>`;
+        		},className: "text-center"},
+            {"defaultContent": `<div class="btn-group">
+                    <button class="btn btn-danger btnborrarimg" id="btnborrarimg">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    </div>`,className: "text-center"},
+        ],
+    });
+
+$('#imglotes tbody').on("click","button.btnborrarimg",function(){
+    var datosimgdelete=$(this).parents('tr');
+    if (datosimgdelete.hasClass('child')) {
+    datosimgdelete=datosimgdelete.prev();
+    }
+    var datosmgres=$('#imglotes').DataTable().row(datosimgdelete).data();
+    console.log(datosmgres);
+
+    Swal.fire({
+        title: '¿Esta seguro que desea Eliminar Esta Imagen?',
+        text: "Esta Acción no se puede Deshacer",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, Eliminar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+
+                type: "POST",
+
+                url: "controllers/residenciales.controller.php",
+
+                data: {identificador:"eliminarimgres",idresi:datosmgres['IDimgresidencial'],url:datosmgres['url_image_res']},
+
+                dataType: "html",
+
+                cache: false,
+                success: function (response) {
+                    console.log(response);
+                    if (response=='ok') {
+                        flasher.success("Imagen Eliminada con éxito");
+                        $('#imglotes').DataTable().ajax.reload();
+                    }else{
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Ha ocurrido un error fatal',
+                        text: 'Contacte a soporte',
+                        });
+                    }
+                },
+                error : function(xhr, status) {
+                console.log(xhr);
+                },
+            });
+        }
+    });
+});
+}

@@ -15,7 +15,7 @@
     <!-- <link rel="stylesheet" href="views/plugins/Personal/css/plantila.css"> -->
 
     <!-- FavIcon -->
-    <link rel="icon" href="views/img/plantilla/icono-negro.png">
+    <link rel="icon" href="views/img/plantilla/icono.ico">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="views/plugins/fontawesome-free/css/all.min.css">

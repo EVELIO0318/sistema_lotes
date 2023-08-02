@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 01-08-2023 a las 04:17:45
+-- Tiempo de generación: 02-08-2023 a las 15:51:33
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 8.0.13
 
@@ -88,15 +88,17 @@ CREATE TABLE IF NOT EXISTS `lotes` (
 --
 
 INSERT INTO `lotes` (`IDlote`, `link_video`, `pdf_expediente`, `link_ficha_catastral`, `Direccion`, `estado`) VALUES
-(1, 'https://www.youtube.com/watch?v=QFs3PIZb3js&list=RDQFs3PIZb3js&start_radio=1', '../admin/views/files/Lote1.pdf', 'https://es.wikipedia.org/wiki/Wikipedia:Portada', 'Barrio el Carmen, cerca del centro de salud', 1),
-(2, 'https://www.youtube.com/watch?v=CvcorFaTupA', '../admin/views/files/Lote2.pdf', 'http://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=322422', '10 MONITOR AV. N EXAMPLE', 1),
+(1, 'https://www.youtube.com/watch?v=QFs3PIZb3js&list=RDQFs3PIZb3js&start_radio=1', '../admin/views/files/Lote13912094.pdf', 'https://es.wikipedia.org/wiki/Wikipedia:Portada', 'Barrio el Carmen, cerca del centro de salud', 1),
+(2, 'https://www.youtube.com/watch?v=CvcorFaTupA', '../admin/views/files/Lote56009933.pdf', 'http://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=322422', '10 MONITOR AV. N EXAMPLE', 1),
 (3, 'https://www.youtube.com/watch?v=CvcorFaTupA', '../admin/views/files/Lote3.pdf', 'http://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=322422', '10 MONITOR AV. N EXAMPLE', 1),
 (4, 'https://www.youtube.com/watch?v=tvCIsrbixQI', '../admin/views/files/Lote4.pdf', 'http://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=322422', '10 MONITOR AV. N EXAMPLE', 1),
 (5, 'https://youtu.be/_i7Lo6DQEi4', '../admin/views/files/Lote5.pdf', 'http://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=322422', '10 MONITOR AV. N EXAMPLE', 1),
 (6, 'https://youtu.be/_i7Lo6DQEi4', '../admin/views/files/Lote6.pdf', 'http://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=322422', '10 MONITOR AV. N EXAMPLE', 1),
-(7, 'https://youtu.be/_i7Lo6DQEi4', '../admin../views/files/Lote7.pdf', 'https://www.sanpedrosula.hn/catastro/solicitud-de-planos', '10 MONITOR AV. N EXAMPLE', 0),
-(8, 'https://youtu.be/0Mi9o-KjQB4', '../admin../views/files/Lote8.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=322422', '10 MONITOR AV. N EXAMPLE', 0),
-(9, 'https://www.youtube.com/watch?v=OyFQAB-motk', '../admin../views/files/Lote9.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=796506', 'Barrio las Cabañas', 1);
+(7, 'https://youtu.be/_i7Lo6DQEi4', '../admin/views/files/Lote7.pdf', 'https://www.sanpedrosula.hn/catastro/solicitud-de-planos', '10 MONITOR AV. N EXAMPLE', 0),
+(8, 'https://youtu.be/0Mi9o-KjQB4', '../admin/views/files/Lote8.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=322422', '10 MONITOR AV. N EXAMPLE', 0),
+(9, 'https://www.youtube.com/watch?v=OyFQAB-motk', '../admin/views/files/Lote9.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=796506', 'Barrio las Cabañas', 1),
+(10, 'https://youtu.be/_i7Lo6DQEi4', '../admin/views/files/Lote55950132.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=796506', 'Cerca de mi Casa', 1),
+(11, 'https://www.youtube.com/watch?v=tvCIsrbixQI', '../admin/views/files/Lote12400891.pdf', 'https://www.sanpedrosula.hn/catastro/solicitud-de-planos', 'Cerca de la Cooperativa Taulabe', 1);
 
 -- --------------------------------------------------------
 
@@ -115,14 +117,16 @@ CREATE TABLE IF NOT EXISTS `residenciales` (
   `info_catastro` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `estado` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`IDresidenciales`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Tabla de residenciales';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Tabla de residenciales';
 
 --
 -- Volcado de datos para la tabla `residenciales`
 --
 
 INSERT INTO `residenciales` (`IDresidenciales`, `nombre_res`, `ubicacion`, `link_video_res`, `plano_pdf`, `info_lotes_pdf`, `info_catastro`, `estado`) VALUES
-(1, 'Residenciales Uldo', '5 AVE S.E ENTRE 1 Y 2 CALLE N.E', 'https://www.youtube.com/watch?v=mdLvIf1sA5M', '../admin/views/files/Plano1.pdf', '../admin/views/files/InfoLotes1.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=309312', 1);
+(1, 'Residenciales Uldo', '5 AVE S.E ENTRE 1 Y 2 CALLE N.E', 'https://www.youtube.com/watch?v=mdLvIf1sA5M', '../admin/views/files/Plano01352491.pdf', '../admin/views/files/InfoLotes16481808.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=309312', 1),
+(2, 'Lomas Verde', 'Colonia El Higo', 'https://www.youtube.com/watch?v=GGxw0MvNO4Y', '../admin/views/files/Plano03574478.pdf', '../admin/views/files/InfoLotes35002602.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=286594', 1),
+(3, 'San Antonio', '14840 SW 34TH ST MIAMI FL', 'https://www.youtube.com/watch?v=GGxw0MvNO4Y', '../admin/views/files/Plano20285218.pdf', '../admin/views/files/InfoLotes44381764.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=286594', 1);
 
 -- --------------------------------------------------------
 
