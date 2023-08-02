@@ -404,6 +404,7 @@ $("#editarlote").submit(function (e) {
                 });
                 $('#lotes').DataTable().ajax.reload();
                 $("#editpdffile").val(''); 
+                $('#modaeditarlote').modal('hide') 
             }else{
                 Swal.fire({
                 icon: 'error',

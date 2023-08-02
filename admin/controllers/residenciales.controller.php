@@ -38,8 +38,8 @@
                 // echo $pathPDF;
                 copy($_FILES['pdfresidencial']['tmp_name'],$oldplanourl);
                 copy($_FILES['pdflotesinfo']['tmp_name'],$oldlotesinfourl);
-                $pathplanosPDF="../admin".$oldplanourl;
-                $pathlotesinfoPDF="../admin".$oldlotesinfourl;
+                $pathplanosPDF="../admin".substr($oldplanourl,2);
+                $pathlotesinfoPDF="../admin".substr($oldlotesinfourl,2);
 
                 
                 $datosResidencial=array(
@@ -71,6 +71,8 @@
 
         static public function editarResidenciales(){
 
+            $ahora = DateTime::createFromFormat('U.u', number_format(microtime(true), 6, '.', ''));
+            $variableParaPDFedit = $ahora->format("su");
             $rutanueva1='';
             $rutanueva2='';
             if($_FILES['pdfresidencialedit']['name'] == ""){
@@ -78,9 +80,10 @@
                 $rutanueva1=$_POST['linkresidencialplano'];
             
             }else{
-                // // $pathPDF=$_SERVER['DOCUMENT_ROOT']."/Proyecto_bienes_raices/admin/views/files/Lote".$IDlote.".pdf";
-                $oldpathPDF1="../views/files/Plano".$_POST['idresidencial'].".pdf";
-                // // echo $pathPDF;
+                $rutacorregida1="..".substr($_POST['linkresidencialplano'],8);
+                unlink($rutacorregida1);
+                $oldpathPDF1="../views/files/Plano".$variableParaPDFedit.".pdf";
+                
                 copy($_FILES['pdfresidencialedit']['tmp_name'],$oldpathPDF1);
                 $rutanueva1="../admin".substr($oldpathPDF1,2);
             }
@@ -92,10 +95,10 @@
                 $rutanueva2=$_POST['listaloteslink'];
             
             }else{
-
+                $rutacorregida2="..".substr($_POST['listaloteslink'],8);
                 // // $pathPDF=$_SERVER['DOCUMENT_ROOT']."/Proyecto_bienes_raices/admin/views/files/Lote".$IDlote.".pdf";
-                $oldpathPDF2="../views/files/InfoLotes".$_POST['idresidencial'].".pdf";
-                unlink($oldpathPDF2);
+                unlink($rutacorregida2);
+                $oldpathPDF2="../views/files/InfoLotes".$variableParaPDFedit.".pdf";
                 // // echo $pathPDF;
                 copy($_FILES['pdflotesinfoedit']['tmp_name'],$oldpathPDF2);
                 $rutanueva2="../admin".substr($oldpathPDF2,2);

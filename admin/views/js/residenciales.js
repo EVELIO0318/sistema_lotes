@@ -1,5 +1,6 @@
 $(document).ready(function (){
     loadresidenciales();
+    cargarDropzone();
 });
 
 $('#pdflotesinfo,#pdfresidencial').on('change', function(){
@@ -143,7 +144,7 @@ function loadresidenciales(){
             },
             
             {"defaultContent": `<div class="btn-group">
-                    <button class="btn btn-primary subirfotos" id="subirfotos" data-toggle="modal" data-target="#verfotos" name="subirfotos">
+                    <button class="btn btn-primary subirfotosres" id="subirfotosres" data-toggle="modal" data-target="#verfotos" name="subirfotosres">
                         <i class="fas fa-upload"></i>
                     </button>
                     <button class="btn btn-warning btneditarresidencial"  data-toggle="modal" data-target="#modaleditarresidencial" id="btneditarresidencial">
@@ -208,9 +209,13 @@ function loadresidenciales(){
                 if (data=='ok') {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Residencial Actualizado con éxito',
+                        title: 'Residencial Actualizada con éxito',
                     });
-                    loadresidenciales();
+                    $('#residenciales').DataTable().ajax.reload();
+                    $("#pdfresidenciaedit").val(''); 
+                    $("#pdflotesinfoedit").val('');
+                    $('#modaleditarresidencial').modal('hide') 
+                    // console.log("Se borro");
                 }else{
                     Swal.fire({
                     icon: 'error',
@@ -276,5 +281,94 @@ $('#residenciales tbody').on("click","button.btneliminarresidenciales",function(
         }
     });
 });
+
+
+function cargarDropzone() {
+
+    $('#residenciales tbody').on("click","button.subirfotosres",function(){
+        var imgresidencial=$(this).parents('tr');
+        if (imgresidencial.hasClass('child')) {
+            imgresidencial=imgresidencial.prev();
+        }
+        var nuevosimageres=$('#residenciales').DataTable().row(imgresidencial).data();
+        // console.log(nuevosimageres);
+        $("#idimglote").val(nuevosimageres['IDresidenciales']);
+        myFileUploadDropZone.removeAllFiles(); 
+    });
+
+
+    let arrayImage=[];
+    var myFileUploadDropZone = new Dropzone(".dropzone", {
+       url: "/Proyecto_bienes_raices/admin/",
+       maxFiles: 15,
+       maxFilesize: 50,
+       acceptedFiles: ".png, .jpg",
+       addRemoveLinks: true,
+       dictDefaultMessage: "Arrastra las imagenes o presiona aqui para subir",
+       dictFallbackMessage: "Your browser does not support drag & drop feature.",
+       dictInvalidFileType: "Esta no es una imagen,eliminela.",
+       dictFileTooBig: "File is too big ({{filesize}} MB). Max filesize: {{maxFilesize}} MB.",
+       dictResponseError: "Server responded with {{statusCode}} code.",
+       dictCancelUpload: "Cancel Upload",
+       dictRemoveFile: "Remove",
+    });
+    myFileUploadDropZone.on('addedfile',file=>{
+       arrayImage.push(file);
+    });
+
+    
+
+    myFileUploadDropZone.on('removedfile',file=>{
+        let i =arrayImage.indexOf(file);
+        arrayImage.splice(i,1);
+        console.log(i);
+     });
+
+    $("#guardarimglotes").click(function () {
+        if (arrayImage.length==0) {
+            Swal.fire({
+                    icon: 'error',
+                    title: 'No ha cargador imagenes',
+                    text: 'Cargue una imagen antes',
+                });
+        }else{
+            let idloteimg=$("#idimglote").val();
+            for (let i = 0; i < arrayImage.length; i++) {
+                let imgData=new FormData();
+                imgData.append("IDlote",idloteimg);
+                imgData.append("file",arrayImage[i]);
+                imgData.append("identificador","guardarimgres");
+
+                $.ajax({
+    
+                    type: "POST",
+            
+                    url: "controllers/residenciales.controller.php",
+            
+                    data: imgData,
+            
+                    dataType: "html",
+            
+                    processData: false,
+                    contentType: false,
+            
+                    cache: false,
+                    success: function (data) {
+                        console.log(data);
+                        if (data=='ok') {
+                            flasher.success("Imagen Cargada con éxito");
+                            myFileUploadDropZone.removeAllFiles();
+                        }else{
+                            flasher.error("Ha ocurrido un error fatal, Contacte a Evelio");
+                        }
+            
+                    }
+            
+                });
+    
+            }
+        }
+    });
+ };
 
 

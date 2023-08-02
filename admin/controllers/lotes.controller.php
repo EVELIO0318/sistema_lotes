@@ -45,7 +45,7 @@ class ControladorLote{
         $oldpathPDF="../views/files/Lote".$variableParaPDF.".pdf";
         // echo $pathPDF;
         copy($_FILES['pdffile']['tmp_name'],$oldpathPDF);
-        $pathPDF="../admin".$oldpathPDF;
+        $pathPDF="../admin".substr($oldpathPDF,2);
 
         $datosLote=array(
             "IDlote"=>$IDlote,
