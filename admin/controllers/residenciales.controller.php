@@ -26,6 +26,9 @@
         case 'eliminarimgres':
             $residencial->ctrEliminarimgres();
         break;
+        case 'cargarparapagina':
+            $residencial->ctrCargarResidencialesPagina();
+        break;
     }
 
 
@@ -207,6 +210,12 @@
             }else{
                 echo $eliminarimg;
             }  
+        }
+
+        static public function ctrCargarResidencialesPagina(){
+            $residencialesaPagina=ModeloResidenciales::mdlDatosRPagina();
+            echo json_encode($residencialesaPagina,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
         }
     }
 ?>
