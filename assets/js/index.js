@@ -1,8 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
-    var mySwiper = new Swiper('.swiper-container', {
-        // ...other parameters
-        observer: true
-    });
+$(document).ready(function(){
     $.ajax({
     
         type: "POST",
@@ -18,12 +14,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     
         cache: false,
         success: function (data) {
-
+            // swiper.appendSlide(`<div class="swiper-slide">new new</div>`);
             //aqui va el swiper add    
         }
     
     });
+
+
 });
+
 
 
     
