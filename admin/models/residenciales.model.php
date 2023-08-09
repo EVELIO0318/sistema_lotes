@@ -111,7 +111,7 @@ class ModeloResidenciales{
 
     static public function mdlDatosRPagina(){
         try{
-            $local=Conexion::conectar()->prepare("SELECT r.IDresidenciales,r.nombre_res,r.ubicacion,r.link_video_res,r.plano_pdf,r.info_lotes_pdf,r.info_catastro,ir.url_image_res FROM residenciales r INNER JOIN imagenes_residencial ir ON ir.IDresidencial=r.IDresidenciales WHERE r.estado<>0");
+            $local=Conexion::conectar()->prepare("SELECT r.IDresidenciales,r.nombre_res,r.ubicacion,r.link_video_res,r.plano_pdf,r.info_lotes_pdf,r.info_catastro,ir.url_image_res FROM residenciales r INNER JOIN imagenes_residencial ir ON ir.IDresidencial=r.IDresidenciales WHERE r.estado<>0 GROUP BY r.IDresidenciales");
             $local->execute();
             return $local->fetchAll(\PDO::FETCH_ASSOC);;
         }catch(Exception $k){
