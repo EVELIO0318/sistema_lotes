@@ -111,6 +111,16 @@ class ModeloLotes{
             return $gaby->getMessage();
         }
     }
+
+    static public function mdlDatosLPagina(){
+        try{
+            $local=Conexion::conectar()->prepare("SELECT l.IDlote,l.Direccion,l.link_video,l.pdf_expediente,l.link_ficha_catastral,il.url_image FROM lotes l INNER JOIN imagenes_lote il ON il.IDlote=l.IDlote WHERE l.estado<>0 GROUP BY l.IDlote");
+            $local->execute();
+            return $local->fetchAll(\PDO::FETCH_ASSOC);;
+        }catch(Exception $k){
+            return $k->getMessage();
+        }
+    }
 }
 
 ?>

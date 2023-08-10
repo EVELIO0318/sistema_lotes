@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 02-08-2023 a las 20:40:58
+-- Tiempo de generación: 10-08-2023 a las 21:03:00
 -- Versión del servidor: 8.0.31
 -- Versión de PHP: 8.0.26
 
@@ -63,16 +63,16 @@ CREATE TABLE IF NOT EXISTS `imagenes_residencial` (
   `url_image_res` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`IDimgresidencial`),
   KEY `IDresidencial` (`IDresidencial`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `imagenes_residencial`
 --
 
 INSERT INTO `imagenes_residencial` (`IDimgresidencial`, `IDresidencial`, `url_image_res`) VALUES
-(1, 1, '../admin/views/img/imgresidencial/1_img02657212.jpeg'),
 (3, 2, '../admin/views/img/imgresidencial/2_img41318010.jpeg'),
-(4, 3, '../admin/views/img/imgresidencial/3_img47200297.jpeg');
+(4, 3, '../admin/views/img/imgresidencial/3_img47200297.jpeg'),
+(7, 1, '../admin/views/img/imgresidencial/1_img16716611.jpeg');
 
 -- --------------------------------------------------------
 
@@ -133,9 +133,9 @@ CREATE TABLE IF NOT EXISTS `residenciales` (
 --
 
 INSERT INTO `residenciales` (`IDresidenciales`, `nombre_res`, `ubicacion`, `link_video_res`, `plano_pdf`, `info_lotes_pdf`, `info_catastro`, `estado`) VALUES
-(1, 'Residenciales Uldo', '5 AVE S.E ENTRE 1 Y 2 CALLE N.E', 'https://www.youtube.com/watch?v=mdLvIf1sA5M', '../admin/views/files/Plano01352491.pdf', '../admin/views/files/InfoLotes16481808.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=309312', 1),
-(2, 'Lomas Verde', 'Colonia El Higo', 'https://www.youtube.com/watch?v=GGxw0MvNO4Y', '../admin/views/files/Plano03574478.pdf', '../admin/views/files/InfoLotes35002602.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=286594', 1),
-(3, 'San Antonio', '14840 SW 34TH ST MIAMI FL', 'https://www.youtube.com/watch?v=GGxw0MvNO4Y', '../admin/views/files/Plano20285218.pdf', '../admin/views/files/InfoLotes44381764.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=286594', 1);
+(1, 'Residencial Uldo', '5 AVE S.E ENTRE 1 Y 2 CALLE N.E', 'https://www.youtube.com/watch?v=mdLvIf1sA5M', '../admin/views/files/Plano01352491.pdf', '../admin/views/files/InfoLotes16481808.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=309312', 1),
+(2, 'Residencial Lomas Verde', 'Colonia El Higo', 'https://www.youtube.com/watch?v=GGxw0MvNO4Y', '../admin/views/files/Plano03574478.pdf', '../admin/views/files/InfoLotes35002602.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=286594', 1),
+(3, 'Residencial San Antonio', '14840 SW 34TH ST MIAMI FL', 'https://www.youtube.com/watch?v=GGxw0MvNO4Y', '../admin/views/files/Plano20285218.pdf', '../admin/views/files/InfoLotes44381764.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=286594', 1);
 
 -- --------------------------------------------------------
 

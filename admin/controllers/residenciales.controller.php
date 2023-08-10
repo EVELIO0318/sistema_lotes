@@ -217,5 +217,7 @@
             echo json_encode($residencialesaPagina,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
         }
+
+        
     }
 ?>

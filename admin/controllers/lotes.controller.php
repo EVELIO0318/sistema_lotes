@@ -27,6 +27,9 @@ switch ($identificador){
     case 'eliminarlote':
         $lote->ctrEliminarLote();
     break;
+    case 'cargarlotespagina':
+        $lote->ctrCargalotesPagina();
+    break;
 
 }
 
@@ -189,6 +192,12 @@ class ControladorLote{
         }else{
             echo $eliminadolote;
         }
+    }
+
+    static public function ctrCargalotesPagina(){
+        $lotesaPagina=ModeloLotes::mdlDatosLPagina();
+        echo json_encode($lotesaPagina,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
     }
 
 }
