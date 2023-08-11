@@ -29,6 +29,10 @@
         case 'cargarparapagina':
             $residencial->ctrCargarResidencialesPagina();
         break;
+        
+        case 'solonombres':
+            $residencial->ctrCargarResidencialesPagina();
+        break;
     }
 
 
@@ -218,6 +222,10 @@
 
         }
 
-        
+        static public function ctrCargarSoloNombres(){
+            $residencialesaPaginaalone=ModeloResidenciales::mdlSoloNombreID();
+            echo json_encode($residencialesaPaginaalone,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        }
     }
 ?>

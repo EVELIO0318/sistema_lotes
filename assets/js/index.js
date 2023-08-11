@@ -206,12 +206,8 @@
       
           cache: false,
           success: function (data) {
-  
             for (let i = 0; i < data.length; i++) {
               let urlimg= data[i]['url_image_res'].substring(3);
-              $('.menures').append(`
-                <a class="dropdown-item " href="residencial.html?idresidencial=${data[i]['IDresidenciales']}">${data[i]['ubicacion']}</a>
-              `);
               if (i==0) {
                 $('.imgback0').css("background-image", `url(${urlimg})`);
                 $('.nameres').text(data[i]['nombre_res']); 
@@ -220,9 +216,10 @@
 
 
                 $(".imgres2").attr("src",urlimg);
-                // $('.addresresi').text(data[i]['ubicacion']);
+                $('.addresresi').text(data[i]['ubicacion']);
                 $('.addresresi').attr("href",`residencial.html?idresidencial=${data[i]['IDresidenciales']}`);
-              }else{
+              }
+              else{
                 carrousel1.appendSlide(`
                 <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(${urlimg})">
                   <div class="overlay overlay-a"></div>
@@ -249,7 +246,6 @@
                   </div>
                 </div>
                 `);
-
                 carrousel3.appendSlide(`
                 <div class="carousel-item-c swiper-slide">
                   <div class="card-box-b card-shadow news-box">

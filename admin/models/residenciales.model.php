@@ -118,5 +118,15 @@ class ModeloResidenciales{
             return $k->getMessage();
         }
     }
+
+    static public function mdlSoloNombreID(){
+        try{
+            $local=Conexion::conectar()->prepare("SELECT IDresidenciales, ubicacion FROM residenciales");
+            $local->execute();
+            return $local->fetchAll(\PDO::FETCH_ASSOC);;
+        }catch(Exception $k){
+            return $k->getMessage();
+        }
+    }
 }
 ?>
