@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 10-08-2023 a las 21:03:00
--- Versión del servidor: 8.0.31
--- Versión de PHP: 8.0.26
+-- Tiempo de generación: 15-08-2023 a las 01:16:50
+-- Versión del servidor: 5.7.36
+-- Versión de PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `imagenes_lote`;
 CREATE TABLE IF NOT EXISTS `imagenes_lote` (
-  `IDimagen` int NOT NULL AUTO_INCREMENT,
-  `IDlote` int NOT NULL,
-  `url_image` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `IDimagen` int(11) NOT NULL AUTO_INCREMENT,
+  `IDlote` int(11) NOT NULL,
+  `url_image` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`IDimagen`),
   KEY `IDlote` (`IDlote`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `imagenes_lote`
@@ -58,12 +58,12 @@ INSERT INTO `imagenes_lote` (`IDimagen`, `IDlote`, `url_image`) VALUES
 
 DROP TABLE IF EXISTS `imagenes_residencial`;
 CREATE TABLE IF NOT EXISTS `imagenes_residencial` (
-  `IDimgresidencial` int NOT NULL AUTO_INCREMENT,
-  `IDresidencial` int NOT NULL,
-  `url_image_res` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `IDimgresidencial` int(11) NOT NULL AUTO_INCREMENT,
+  `IDresidencial` int(11) NOT NULL,
+  `url_image_res` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`IDimgresidencial`),
   KEY `IDresidencial` (`IDresidencial`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `imagenes_residencial`
@@ -82,15 +82,15 @@ INSERT INTO `imagenes_residencial` (`IDimgresidencial`, `IDresidencial`, `url_im
 
 DROP TABLE IF EXISTS `lotes`;
 CREATE TABLE IF NOT EXISTS `lotes` (
-  `IDlote` int NOT NULL,
-  `link_video` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `pdf_expediente` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `link_ficha_catastral` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Direccion` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `estado` tinyint NOT NULL DEFAULT '1',
+  `IDlote` int(11) NOT NULL,
+  `link_video` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `pdf_expediente` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `link_ficha_catastral` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `Direccion` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `estado` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`IDlote`),
   KEY `residencial` (`Direccion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `lotes`
@@ -117,23 +117,23 @@ INSERT INTO `lotes` (`IDlote`, `link_video`, `pdf_expediente`, `link_ficha_catas
 
 DROP TABLE IF EXISTS `residenciales`;
 CREATE TABLE IF NOT EXISTS `residenciales` (
-  `IDresidenciales` int NOT NULL AUTO_INCREMENT,
-  `nombre_res` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `ubicacion` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `link_video_res` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `plano_pdf` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `info_lotes_pdf` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `info_catastro` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `estado` tinyint NOT NULL DEFAULT '1',
+  `IDresidenciales` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_res` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `ubicacion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `link_video_res` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `plano_pdf` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `info_lotes_pdf` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `info_catastro` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `estado` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`IDresidenciales`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci COMMENT='Tabla de residenciales';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Tabla de residenciales';
 
 --
 -- Volcado de datos para la tabla `residenciales`
 --
 
 INSERT INTO `residenciales` (`IDresidenciales`, `nombre_res`, `ubicacion`, `link_video_res`, `plano_pdf`, `info_lotes_pdf`, `info_catastro`, `estado`) VALUES
-(1, 'Residencial Uldo', '5 AVE S.E ENTRE 1 Y 2 CALLE N.E', 'https://www.youtube.com/watch?v=mdLvIf1sA5M', '../admin/views/files/Plano01352491.pdf', '../admin/views/files/InfoLotes16481808.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=309312', 1),
+(1, 'Residencial Uldo', '5 AVE S.E ENTRE 1 Y 2 CALLE N.E', 'https://www.youtube.com/watch?v=mdLvIf1sA5M', '../admin/views/files/Plano38198464.pdf', '../admin/views/files/InfoLotes16481808.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=309312', 1),
 (2, 'Residencial Lomas Verde', 'Colonia El Higo', 'https://www.youtube.com/watch?v=GGxw0MvNO4Y', '../admin/views/files/Plano03574478.pdf', '../admin/views/files/InfoLotes35002602.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=286594', 1),
 (3, 'Residencial San Antonio', '14840 SW 34TH ST MIAMI FL', 'https://www.youtube.com/watch?v=GGxw0MvNO4Y', '../admin/views/files/Plano20285218.pdf', '../admin/views/files/InfoLotes44381764.pdf', 'https://surei.sinap.hn/consultas/folioadministrativo/fichaCatastral.jsp?idParcela=286594', 1);
 
@@ -145,15 +145,15 @@ INSERT INTO `residenciales` (`IDresidenciales`, `nombre_res`, `ubicacion`, `link
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `IDusuario` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `apellido` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `direccion` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `correo` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `pass` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `estado` tinyint NOT NULL DEFAULT '1',
+  `IDusuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `apellido` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `direccion` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `correo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `pass` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `estado` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`IDusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci COMMENT='Tabla para guardar usuarios administradores';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Tabla para guardar usuarios administradores';
 
 --
 -- Volcado de datos para la tabla `usuarios`
