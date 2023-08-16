@@ -33,6 +33,12 @@
         case 'solonombres':
             $residencial->ctrCargarResidencialesPagina();
         break;
+        case 'todolotepagina':
+            $residencial->ctrResidencialIndividual();
+        break;
+        case 'todolotepaginaimg':
+            $residencial->ctrResidencialIndividualimgs();
+        break;
     }
 
 
@@ -226,6 +232,15 @@
             $residencialesaPaginaalone=ModeloResidenciales::mdlSoloNombreID();
             echo json_encode($residencialesaPaginaalone,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+        }
+
+        static public function ctrResidencialIndividual(){
+            $individual=ModeloResidenciales::mdlDatosIndividuales($_POST['id']);
+            echo json_encode($individual,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        }
+        static public function ctrResidencialIndividualimgs(){
+            $individual=ModeloResidenciales::mdlDatosIndividualesimgs($_POST['id']);
+            echo json_encode($individual,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
     }
 ?>

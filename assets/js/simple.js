@@ -201,7 +201,7 @@
         
             url: "admin/controllers/residenciales.controller.php",
         
-            data: {identificador:'cargarparapagina'},
+            data: {identificador:'todolotepagina',id:prodId},
         
             dataType: "json",
         
@@ -209,10 +209,14 @@
             // contentType: false,
         
             cache: false,
-            success: function (data) {  
+            success: function (data) { 
+              console.log(data); 
             }
         
         });
+
+
+         traerimgsindividuales(prodId);
     });
 
 
@@ -222,5 +226,32 @@
       results = regex.exec(location.search);
       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
+
+
+  function traerimgsindividuales(prodId){
+    
+    
+    $.ajax({
+        
+      type: "POST",
+  
+      url: "admin/controllers/residenciales.controller.php",
+  
+      data: {identificador:'todolotepaginaimg',id:prodId},
+  
+      dataType: "json",
+  
+      // processData: false,
+      // contentType: false,
+  
+      cache: false,
+      success: function (data) { 
+        console.log(data); 
+      }
+  
+  });
+  };
+
+
   })()
   

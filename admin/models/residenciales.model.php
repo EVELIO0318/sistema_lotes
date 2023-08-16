@@ -128,5 +128,27 @@ class ModeloResidenciales{
             return $k->getMessage();
         }
     }
+
+    static public function mdlDatosIndividuales($idresid){
+        try{
+            $individual=Conexion::conectar()->prepare("SELECT * FROM residenciales WHERE IDresidenciales=:id AND estado<>0");
+            $individual->bindParam(":id",$idresid,PDO::PARAM_STR);
+            $individual->execute();
+            return $individual->fetch(PDO::FETCH_ASSOC);
+        }catch(Exception $ni){
+            return $ni->getMessage();
+        }
+    }
+
+    static public function mdlDatosIndividualesimgs($idresidimg){
+        try{
+            $individual=Conexion::conectar()->prepare("SELECT url_image_res FROM imagenes_residencial WHERE IDresidencial=:id");
+            $individual->bindParam(":id",$idresidimg,PDO::PARAM_STR);
+            $individual->execute();
+            return $individual->fetchAll(PDO::FETCH_ASSOC);
+        }catch(Exception $nic){
+            return $nic->getMessage();
+        }
+    }
 }
 ?>
