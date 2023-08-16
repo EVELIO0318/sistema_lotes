@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 15-08-2023 a las 01:16:50
+-- Tiempo de generación: 16-08-2023 a las 14:45:24
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 8.0.13
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `imagenes_residencial` (
   `url_image_res` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`IDimgresidencial`),
   KEY `IDresidencial` (`IDresidencial`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `imagenes_residencial`
@@ -72,7 +72,8 @@ CREATE TABLE IF NOT EXISTS `imagenes_residencial` (
 INSERT INTO `imagenes_residencial` (`IDimgresidencial`, `IDresidencial`, `url_image_res`) VALUES
 (3, 2, '../admin/views/img/imgresidencial/2_img41318010.jpeg'),
 (4, 3, '../admin/views/img/imgresidencial/3_img47200297.jpeg'),
-(7, 1, '../admin/views/img/imgresidencial/1_img16716611.jpeg');
+(7, 1, '../admin/views/img/imgresidencial/1_img16716611.jpeg'),
+(8, 1, '../admin/views/img/imgresidencial/1_img05092237.jpeg');
 
 -- --------------------------------------------------------
 
