@@ -103,65 +103,50 @@
     /**
      * News carousel
      */
-    let carrousel3=new Swiper('#news-carousel', {
-      speed: 600,
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
-      },
-      slidesPerView: 'auto',
-      pagination: {
-        el: '.news-carousel-pagination',
-        type: 'bullets',
-        clickable: true
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20
-        },
+    // let carrousel3=new Swiper('#news-carousel', {
+    //   speed: 600,
+    //   loop: true,
+    //   autoplay: {
+    //     delay: 5000,
+    //     disableOnInteraction: false
+    //   },
+    //   slidesPerView: 'auto',
+    //   pagination: {
+    //     el: '.news-carousel-pagination',
+    //     type: 'bullets',
+    //     clickable: true
+    //   },
+    //   breakpoints: {
+    //     320: {
+    //       slidesPerView: 1,
+    //       spaceBetween: 20
+    //     },
   
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 20
-        }
-      }
-    });
+    //     1200: {
+    //       slidesPerView: 3,
+    //       spaceBetween: 20
+    //     }
+    //   }
+    // });
   
     /**
      * Property Single carousel
      */
-    new Swiper('#property-single-carousel', {
-      speed: 600,
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
-      },
-      pagination: {
-        el: '.property-single-carousel-pagination',
-        type: 'bullets',
-        clickable: true
-      }
-    });
-    
-    
-    let carrousel1=new Swiper('.intro-carousel', {
-        speed: 600,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false
-        },
-        slidesPerView: 'auto',
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        }
-      });
-    let carrousel2=  new Swiper('#property-carousel', {
+    // let single= new Swiper('#property-single-carousel', {
+    //   speed: 600,
+    //   loop: true,
+    //   autoplay: {
+    //     delay: 5000,
+    //     disableOnInteraction: false
+    //   },
+    //   pagination: {
+    //     el: '.property-single-carousel-pagination',
+    //     type: 'bullets',
+    //     clickable: true
+    //   }
+    // });
+
+    let single=new Swiper('.intro-carousel', {
       speed: 600,
       loop: true,
       autoplay: {
@@ -170,29 +155,16 @@
       },
       slidesPerView: 'auto',
       pagination: {
-        el: '.propery-carousel-pagination',
+        el: '.swiper-pagination',
         type: 'bullets',
         clickable: true
-      },
-      breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20
-        },
-    
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 20
-        },
-        autoHeight: false,
       }
     });
-
-    
+        
     $(document).ready(function(){
       var prodId = getParameterByName('idresidencial');
 
-      console.log(prodId);
+      // console.log(prodId);
     
     
         $.ajax({
@@ -210,7 +182,13 @@
         
             cache: false,
             success: function (data) { 
-              console.log(data); 
+              $('.nameres,.nameaddr').text(data['nombre_res']);
+              $('.resaddr').text(data['ubicacion']);
+              $('.linkplane').attr('href',(data['plano_pdf']).substring(3));
+              let link=data['link_video_res'];
+              $('.linkvideores').attr('src',`https://www.youtube.com/embed/${link.substring(link.length - 11)}`);
+              $('.infolotes').attr('src',data['info_lotes_pdf'].substring(3));
+              $('.catastroinfo').attr('src',data['info_catastro']);
             }
         
         });
@@ -247,6 +225,18 @@
       cache: false,
       success: function (data) { 
         console.log(data); 
+
+        for (let i = 0; i < data.length; i++) {
+          if (i==0) {
+            $('.imgback0').css("background-image", `url(${(data[0]['url_image_res']).substring(3)})`);
+          }else{
+            single.appendSlide(`
+            <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(${(data[i]['url_image_res']).substring(3)})">
+            </div
+             `);
+          }
+          
+        }
       }
   
   });

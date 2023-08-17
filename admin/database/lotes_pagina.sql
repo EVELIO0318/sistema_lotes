@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 16-08-2023 a las 14:45:24
--- Versión del servidor: 5.7.36
--- Versión de PHP: 8.0.13
+-- Tiempo de generación: 17-08-2023 a las 18:23:26
+-- Versión del servidor: 8.0.31
+-- Versión de PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `imagenes_lote`;
 CREATE TABLE IF NOT EXISTS `imagenes_lote` (
-  `IDimagen` int(11) NOT NULL AUTO_INCREMENT,
-  `IDlote` int(11) NOT NULL,
-  `url_image` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `IDimagen` int NOT NULL AUTO_INCREMENT,
+  `IDlote` int NOT NULL,
+  `url_image` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`IDimagen`),
   KEY `IDlote` (`IDlote`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `imagenes_lote`
@@ -58,12 +58,12 @@ INSERT INTO `imagenes_lote` (`IDimagen`, `IDlote`, `url_image`) VALUES
 
 DROP TABLE IF EXISTS `imagenes_residencial`;
 CREATE TABLE IF NOT EXISTS `imagenes_residencial` (
-  `IDimgresidencial` int(11) NOT NULL AUTO_INCREMENT,
-  `IDresidencial` int(11) NOT NULL,
-  `url_image_res` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `IDimgresidencial` int NOT NULL AUTO_INCREMENT,
+  `IDresidencial` int NOT NULL,
+  `url_image_res` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`IDimgresidencial`),
   KEY `IDresidencial` (`IDresidencial`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `imagenes_residencial`
@@ -72,8 +72,7 @@ CREATE TABLE IF NOT EXISTS `imagenes_residencial` (
 INSERT INTO `imagenes_residencial` (`IDimgresidencial`, `IDresidencial`, `url_image_res`) VALUES
 (3, 2, '../admin/views/img/imgresidencial/2_img41318010.jpeg'),
 (4, 3, '../admin/views/img/imgresidencial/3_img47200297.jpeg'),
-(7, 1, '../admin/views/img/imgresidencial/1_img16716611.jpeg'),
-(8, 1, '../admin/views/img/imgresidencial/1_img05092237.jpeg');
+(7, 1, '../admin/views/img/imgresidencial/1_img16716611.jpeg');
 
 -- --------------------------------------------------------
 
@@ -83,15 +82,15 @@ INSERT INTO `imagenes_residencial` (`IDimgresidencial`, `IDresidencial`, `url_im
 
 DROP TABLE IF EXISTS `lotes`;
 CREATE TABLE IF NOT EXISTS `lotes` (
-  `IDlote` int(11) NOT NULL,
-  `link_video` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `pdf_expediente` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `link_ficha_catastral` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `Direccion` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1',
+  `IDlote` int NOT NULL,
+  `link_video` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `pdf_expediente` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `link_ficha_catastral` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Direccion` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `estado` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`IDlote`),
   KEY `residencial` (`Direccion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `lotes`
@@ -118,16 +117,16 @@ INSERT INTO `lotes` (`IDlote`, `link_video`, `pdf_expediente`, `link_ficha_catas
 
 DROP TABLE IF EXISTS `residenciales`;
 CREATE TABLE IF NOT EXISTS `residenciales` (
-  `IDresidenciales` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_res` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `ubicacion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `link_video_res` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `plano_pdf` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `info_lotes_pdf` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `info_catastro` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1',
+  `IDresidenciales` int NOT NULL AUTO_INCREMENT,
+  `nombre_res` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `ubicacion` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `link_video_res` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `plano_pdf` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `info_lotes_pdf` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `info_catastro` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `estado` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`IDresidenciales`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Tabla de residenciales';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci COMMENT='Tabla de residenciales';
 
 --
 -- Volcado de datos para la tabla `residenciales`
@@ -146,15 +145,15 @@ INSERT INTO `residenciales` (`IDresidenciales`, `nombre_res`, `ubicacion`, `link
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `IDusuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `apellido` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `direccion` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `correo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `pass` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `estado` tinyint(4) NOT NULL DEFAULT '1',
+  `IDusuario` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `apellido` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `direccion` varchar(200) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `correo` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `pass` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `estado` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`IDusuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Tabla para guardar usuarios administradores';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci COMMENT='Tabla para guardar usuarios administradores';
 
 --
 -- Volcado de datos para la tabla `usuarios`
