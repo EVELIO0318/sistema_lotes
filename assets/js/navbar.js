@@ -16,10 +16,12 @@ $(document).ready(function(){
         success: function (datalone) {
           for (let i = 0; i < datalone.length; i++) {
             $('.menures').append(`
-              <a class="dropdown-item " href="residencial.html?idresidencial=${datalone[i]['IDresidenciales']}">${datalone[i]['ubicacion']}</a>
+              <a class="dropdown-item " href="residencial.html?idresidencial=${datalone[i]['IDresidenciales']}">${datalone[i]['nombre_res']}</a>
             `);
           }
         }
-    
     });
+
 });
+
+

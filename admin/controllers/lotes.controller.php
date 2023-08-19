@@ -30,6 +30,12 @@ switch ($identificador){
     case 'cargarlotespagina':
         $lote->ctrCargalotesPagina();
     break;
+    case 'cargarlotepag':
+        $lote->ctrCargarInformacion();
+    break;
+    case 'cargarlotepagimg':
+        $lote->ctrCargarInformacionimg();
+    break;
 
 }
 
@@ -198,6 +204,16 @@ class ControladorLote{
         $lotesaPagina=ModeloLotes::mdlDatosLPagina();
         echo json_encode($lotesaPagina,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+    }
+
+    static public function ctrCargarInformacion(){
+        $individual=ModeloLotes::mdlDatosIndividuales($_POST['id']);
+        echo json_encode($individual,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
+    static public function ctrCargarInformacionimg(){
+        $individual=ModeloLotes::mdlDatosIndividualesimgs($_POST['id']);
+        echo json_encode($individual,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
 }

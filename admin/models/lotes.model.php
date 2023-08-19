@@ -121,6 +121,29 @@ class ModeloLotes{
             return $k->getMessage();
         }
     }
+
+
+    static public function mdlDatosIndividuales($idlotsid){
+        try{
+            $individual=Conexion::conectar()->prepare("SELECT * FROM lotes WHERE IDlote=:id AND estado<>0");
+            $individual->bindParam(":id",$idlotsid,PDO::PARAM_STR);
+            $individual->execute();
+            return $individual->fetch(PDO::FETCH_ASSOC);
+        }catch(Exception $ni){
+            return $ni->getMessage();
+        }
+    }
+
+    static public function mdlDatosIndividualesimgs($idresidimg){
+        try{
+            $individual=Conexion::conectar()->prepare("SELECT url_image FROM imagenes_lote WHERE IDlote=:id");
+            $individual->bindParam(":id",$idresidimg,PDO::PARAM_STR);
+            $individual->execute();
+            return $individual->fetchAll(PDO::FETCH_ASSOC);
+        }catch(Exception $nic){
+            return $nic->getMessage();
+        }
+    }
 }
 
 ?>
