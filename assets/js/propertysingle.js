@@ -91,108 +91,64 @@
       body.classList.remove('box-collapse-open')
       body.classList.add('box-collapse-closed')
     })
-  
-    /**
-     * Intro Carousel
-     */
-    
-  
-    /**
-     * Property carousel
-     */
-    /**
-     * News carousel
-     */
-    // let carrousel3=new Swiper('#news-carousel', {
-    //   speed: 600,
-    //   loop: true,
-    //   autoplay: {
-    //     delay: 5000,
-    //     disableOnInteraction: false
-    //   },
-    //   slidesPerView: 'auto',
-    //   pagination: {
-    //     el: '.news-carousel-pagination',
-    //     type: 'bullets',
-    //     clickable: true
-    //   },
-    //   breakpoints: {
-    //     320: {
-    //       slidesPerView: 1,
-    //       spaceBetween: 20
-    //     },
-  
-    //     1200: {
-    //       slidesPerView: 3,
-    //       spaceBetween: 20
-    //     }
-    //   }
-    // });
-  
-    /**
-     * Property Single carousel
-     */
-    // let single= new Swiper('#property-single-carousel', {
-    //   speed: 600,
-    //   loop: true,
-    //   autoplay: {
-    //     delay: 5000,
-    //     disableOnInteraction: false
-    //   },
-    //   pagination: {
-    //     el: '.property-single-carousel-pagination',
-    //     type: 'bullets',
-    //     clickable: true
-    //   }
-    // });
+        
+    $(document).ready(function(){
+        
+        $.ajax({
+        
+            type: "POST",
+        
+            url: "admin/controllers/lotes.controller.php",
+        
+            data: {identificador:'cargarlotespagina'},
+        
+            dataType: "json",
+        
+            // processData: false,
+            // contentType: false,
+        
+            cache: false,
+            success: function (data) { 
+              // console.log(data);
 
-    let single=new Swiper('.intro-carousel', {
-      speed: 600,
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
-      },
-      slidesPerView: 'auto',
-      pagination: {
-        el: '.swiper-pagination',
-        type: 'bullets',
-        clickable: true
-      }
+              for (let i = 0; i < data.length; i++) {
+                let urlimglote= data[i]['url_image'].substring(3);
+                $('.listal').append(`
+                <div class="col-md-4">
+                  <div class="card-box-a card-shadow">
+                  <div class="img-box-a">
+                    <img src="${urlimglote}" alt="" class="img-a img-fluid loteimg" style="height: 400px;">
+                  </div>
+                  <div class="card-overlay">
+                    <div class="card-overlay-a-content">
+                      <div class="card-header-a">
+                        <h2 class="card-title-a">
+                          <a href="lote.html?idlote=${data[i]['IDlote']}">${data[i]['Direccion']}</a>
+                        </h2>
+                      </div>
+                      <div class="card-body-a">
+                        <div class="price-box d-flex">
+                          <span class="price-a">Disponible</span>
+                        </div>
+                      </div>
+                      <div class="card-footer-a" style="height: 50%;">
+                        <div class="card-info d-flex justify-content-around">
+                          <a href="lote.html?idlote=${data[i]['IDlote']}" class="link-a">Click para ver Más
+                            <span class="bi bi-chevron-right"></span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                `);
+                
+              }
+            }
+        
+        });
     });
-        
-    // $(document).ready(function(){
-    //   var prodId = getParameterByName('idresidencial');
-
-    //   // console.log(prodId);
-    
-    
-    //     $.ajax({
-        
-    //         type: "POST",
-        
-    //         url: "admin/controllers/residenciales.controller.php",
-        
-    //         data: {identificador:'todolotepagina',id:prodId},
-        
-    //         dataType: "json",
-        
-    //         // processData: false,
-    //         // contentType: false,
-        
-    //         cache: false,
-    //         success: function (data) { 
-    //           $('.nameres,.nameaddr').text(data['nombre_res']);
-    //           $('.resaddr').text(data['ubicacion']);
-    //           $('.linkplane').attr('href',(data['plano_pdf']).substring(3));
-    //           let link=data['link_video_res'];
-    //           $('.linkvideores').attr('src',`https://www.youtube.com/embed/${link.substring(link.length - 11)}`);
-    //           $('.infolotes').attr('src',data['info_lotes_pdf'].substring(3));
-    //           $('.catastroinfo').attr('src',data['info_catastro']);
-    //         }
-        
-    //     });
-    // });
 
 
 
